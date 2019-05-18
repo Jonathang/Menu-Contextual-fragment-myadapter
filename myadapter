@@ -1,0 +1,69 @@
+ @Override
+    public void onViewRecycled(@NonNull RegistroViewHolder holder) {
+        holder.itemView.setOnLongClickListener(null);
+        super.onViewRecycled(holder);
+    }
+
+    @Override
+    public void onBindViewHolder(final RegistroViewHolder holder, int position) {
+        //se mencionan los Textview de item lista en caso de que sean enteros se maneja String.valueof() y al ultimo se menciona
+        //el getter
+
+        holder.tvcantidad.setText(String.valueOf(arrayregistro.get(position).getCant()));
+        holder.tvproducto.setText(arrayregistro.get(position).getProd());
+        holder.tvprecio.setText(String.valueOf(arrayregistro.get(position).getPrec()));
+        
+      // Selecionar onclongclicklistener
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                setPosition(holder.getAdapterPosition());
+                return false;
+            }
+        });
+
+
+    }
+    
+     public class RegistroViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
+
+        TextView tvcantidad, tvproducto, tvprecio;
+        View vista;
+
+
+        public RegistroViewHolder(View itemView, Context c) {
+            super(itemView);
+            //  itemView.setOnCreateContextMenuListener(this);
+           // this.vista = itemView;
+
+            tvcantidad = itemView.findViewById(R.id.tvcantidad);
+            tvproducto = itemView.findViewById(R.id.tvproducto);
+            tvprecio = itemView.findViewById(R.id.tvprecio);
+            //Mencionar setonCreateContext
+            itemView.setOnCreateContextMenuListener(this);
+
+
+        }
+
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            //mencionar campos del menu
+             menu.add(Menu.NONE, R.id.editar_registro_item,
+             Menu.NONE, R.string.editar);
+             menu.add(Menu.NONE, R.id.eliminar_registro_item,
+             Menu.NONE, R.string.eliminar);
+        }
+    }
+    
+    //poner las posiciones 
+    private int position;
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+}
