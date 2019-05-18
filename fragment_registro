@@ -1,0 +1,19 @@
+Dentro del fragmnet
+onCreateView
+
+registerForContextMenu(recyclerViewRegistro);
+
+
+ @Override
+    public boolean onContextItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.editar_registro_item:
+                Toast.makeText(getActivity(), "editado", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.eliminar_registro_item:
+                Toast.makeText(getActivity(), "Eliminado", Toast.LENGTH_LONG).show();
+                break;
+        }
+        return super.onContextItemSelected(item);
+    }
