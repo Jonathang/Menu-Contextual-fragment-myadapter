@@ -39,6 +39,7 @@
             tvcantidad = itemView.findViewById(R.id.tvcantidad);
             tvproducto = itemView.findViewById(R.id.tvproducto);
             tvprecio = itemView.findViewById(R.id.tvprecio);
+            
             //Mencionar setonCreateContext
             itemView.setOnCreateContextMenuListener(this);
 
